@@ -1,4 +1,9 @@
-import { FormControl, FormLabel, Input as ChackraInput, InputProps as ChackraInputProps } from "@chakra-ui/react";
+import { 
+  FormControl, 
+  FormLabel, 
+  Input as ChackraInput, 
+  InputProps as ChackraInputProps 
+} from "@chakra-ui/react";
 
 interface InputProps extends ChackraInputProps {
   name: string;

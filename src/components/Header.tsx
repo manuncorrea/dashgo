@@ -5,9 +5,10 @@ export function Header() {
   return (
     <Flex 
       as="header" 
-      width="100" 
+      width="100%" 
       maxWidth={1480} 
       height="20" 
+      marginX="auto"
       marginTop="4" 
       paddingX="6" 
       align="center"
@@ -29,7 +30,7 @@ export function Header() {
         paddingY="4"
         paddingX="8"
         marginLeft="6"
-        maxWidth={400}
+        maxWidth={600}
         alignSelf="center"
         color="gray.200"
         position="relative"
@@ -57,7 +58,7 @@ export function Header() {
         <HStack
           spacing="8"
           marginX="8"
-          pr="8"
+          paddingRight="8"
           paddingY="1"
           color="gray.300"
 
@@ -69,7 +70,7 @@ export function Header() {
         </HStack>
 
         <Flex align="center">
-          <Box mr="4" textAlign="right">
+        <Box marginRight="4" textAlign="right">
             <Text>Emanuele Correa</Text>
             <Text color="gray.300" fontSize="small">manu@gmail.com</Text>
           </Box>

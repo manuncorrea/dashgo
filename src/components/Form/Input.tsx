@@ -9,7 +9,6 @@ interface InputProps extends ChackraInputProps {
   name: string;
   label?: string
 }
-
 export function Input({ name, label, ...rest }: InputProps) {
   return (
     <FormControl>

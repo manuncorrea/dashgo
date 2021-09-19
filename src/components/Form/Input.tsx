@@ -1,11 +1,11 @@
 import { forwardRef, ForwardRefRenderFunction } from 'react';
-import { FieldError } from "react-hook-form";
+import { FieldError } from 'react-hook-form';
 import { 
   FormControl, 
   FormLabel, 
   Input as ChakraInut, 
   InputProps as ChakraInutProps 
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import { FormErrorMessage } from '@chakra-ui/react';
 
 interface InputProps extends ChakraInutProps {
@@ -22,14 +22,14 @@ interface InputProps extends ChakraInutProps {
       <ChakraInut
         name={name}
         id={name}
-        type="password"
-        focusBorderColor="pink.500"
-        bgColor="gray.900"
-        variant="filled"
+        type='password'
+        focusBorderColor='pink.500'
+        bgColor='gray.900'
+        variant='filled'
         _hover={{
           bgColor: 'gray.900'
         }}
-        size="lg"
+        size='lg'
         ref={ref}
         {...rest}
       />

@@ -38,10 +38,8 @@ export default function CreateUser() {
 
   const { errors } = formState;
   
-  const handleCreateUser: SubmitHandler<CreateUserFormData> = async (
-    values
-    ) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+  const handleCreateUser: SubmitHandler<CreateUserFormData> = async (values) => {
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     console.log(values);
   };
@@ -69,15 +67,15 @@ export default function CreateUser() {
                 name="name" 
                 label="Nome Completo" 
                 type="name"
-                error={formState.errors.name}
                 {...register('name')}
+                error={errors.name}
               />
               <Input 
                 name="email" 
                 type="email" 
                 label="E-mail" 
-                error={formState.errors.email}
                 {...register('email')}
+                error={errors.email}
               />
             </SimpleGrid>
 
@@ -86,15 +84,15 @@ export default function CreateUser() {
                 name="password" 
                 type="password" 
                 label="Senha" 
-                error={formState.errors.password}
-                {...register('senha')}
+                {...register('password')}
+                error={errors.password}
               />
               <Input 
                 name="password_confirmation" 
                 type="password" 
                 label="Confirmação da senha" 
-                error={formState.errors.password_confirmation}
                 {...register('password_confirmation')}
+                error={errors.password_confirmation}
               />
             </SimpleGrid>
           </VStack>

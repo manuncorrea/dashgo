@@ -14,8 +14,9 @@ import {
   Text,
   useBreakpointValue,
   Spinner,
-  Link
+  Link,
 } from "@chakra-ui/react";
+import { GetServerSideProps } from "next";
 
 import NextLink from "next/link";
 import { useState } from "react";
@@ -25,26 +26,30 @@ import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
 import { api } from "../../services/api";
-import { useUsers } from "../../services/hooks/useUsers";
+import { getUsers, useUsers } from "../../services/hooks/useUsers";
 import { queryClient } from "../../services/queryClient";
 
 export default function UserList() {
-  const [page, setPage] = useState(1)
-  const { data, isLoading, isFetching, error } = useUsers(page)
+  const [page, setPage] = useState(1);
+  const { data, isLoading, isFetching, error } = useUsers(page);
 
   const isWideVersion = useBreakpointValue({
     base: false,
-    lg: true
-  })
+    lg: true,
+  });
 
   async function handlePrefetchUser(userId: string) {
-    await queryClient.prefetchQuery(['user', userId], async () => {
-      const response = await api.get(`user/${userId}`)
+    await queryClient.prefetchQuery(
+      ["user", userId],
+      async () => {
+        const response = await api.get(`user/${userId}`);
 
-      return response.data;
-    }, {
-      staleTime: 1000 * 60 * 10 // 10 minutos
-    })
+        return response.data;
+      },
+      {
+        staleTime: 1000 * 60 * 10, // 10 minutos
+      }
+    );
   }
   return (
     <Box>
@@ -79,7 +84,7 @@ export default function UserList() {
               </Button>
             </NextLink>
           </Flex>
-          { isLoading ? (
+          {isLoading ? (
             <Flex justify="center">
               <Spinner />
             </Flex>
@@ -101,22 +106,23 @@ export default function UserList() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.users.map(user => (
+                  {data.users.map((user) => (
                     <Tr key={user.id}>
                       <Td px={["4", "4", "6"]}>
                         <Checkbox colorScheme="pink" />
                       </Td>
                       <Td>
-
                         <Box>
-                          <Link color="purple.400" onMouseEnter={() =>  handlePrefetchUser(user.id)}>
-                           <Text fontWeight="bold">{user.name}</Text>
+                          <Link
+                            color="purple.400"
+                            onMouseEnter={() => handlePrefetchUser(user.id)}
+                          >
+                            <Text fontWeight="bold">{user.name}</Text>
                           </Link>
                           <Text fontSize="sm" color="gray.300">
                             {user.email}
                           </Text>
                         </Box>
-
                       </Td>
                       {isWideVersion && <Td>{user.createdAt}</Td>}
                     </Tr>
@@ -135,3 +141,4 @@ export default function UserList() {
     </Box>
   );
 }
+
